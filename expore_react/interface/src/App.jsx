@@ -1,11 +1,11 @@
 import {createRoot} from 'react-dom/client';
-
+import {BiArchive} from 'react-icons/bi'
 
 
 function App () {
     return(
         <div className="app">
-            <h1>Hola from app</h1>
+            <h1> <BiArchive/> Hola from app</h1>
         </div>
     )
 }
