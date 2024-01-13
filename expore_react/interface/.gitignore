@@ -1,0 +1,7 @@
+/node_modules/
+/build/
+dist/
+adopt_me/node_modules/
+.env
+.coverage/
+.vscode/
