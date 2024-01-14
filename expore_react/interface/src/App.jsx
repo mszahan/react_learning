@@ -47,7 +47,12 @@ function App () {
     return(
         <div className="App container mx-auto mt-3 font-thin p-5">
             <h1 className='text-3xl'> <BiArchive className='inline-block text-red-400 mb-3'/> Your Appointment</h1>
-            <AddAppointment/>
+            <AddAppointment
+            onSendAppointment={ myAppointment => setAppointmentList([...appointmentList, myAppointment]) }
+            lastId= {appointmentList.reduce((max, item) => Number(item.id) > max ? Number(item.id) : max, 0)}
+            />
+
+
             <Search query={query}
             onQueryChange={myQuery => setQuery(myQuery)}
             orderBy={orderBy}
