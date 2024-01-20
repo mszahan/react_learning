@@ -3,20 +3,25 @@ import express from 'express';
 let articleInfo = [
     {
         name: 'learn-rect',
-        upvotes:0
+        upvotes:0,
+        comments: []
     },
     {
         name: 'learn-node',
-        upvotes:0
+        upvotes:0,
+        comments: []
     },
     {
         name: 'mongodb',
-        upvotes:0
+        upvotes:0,
+        comments: []
     },
 ]
 
 const app = express()
 app.use(express.json());
+
+
 
 app.put('/api/articles/:name/upvote', (req, res) => {
     const {name} = req.params;
@@ -32,10 +37,27 @@ app.put('/api/articles/:name/upvote', (req, res) => {
 
 
 
+app.post('/api/articles/:name/comments', (req, res) => {
+    const {name} = req.params;
+    const { postedBy, text } = req.body;
 
-// app.get('/hello', (req, res) => {
-//     res.send('Hello');
-// });
+    const article = articleInfo.find(a => a.name === name);
+
+    if (article) {
+        article.comments.push({ postedBy, text });
+        res.send(article.comments);
+    } else {
+        res.send('that article does\'t exist')
+    }
+
+
+})
+
+
+
+app.get('/hello', (req, res) => {
+    res.send('Hello');
+});
 
 
 
