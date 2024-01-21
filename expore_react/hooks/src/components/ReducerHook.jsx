@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useDeferredValue, useReducer, useState } from "react";
 
 
 
@@ -54,6 +54,60 @@ function CBox () {
 
 
 
+// using the dispathc in useReducer
+
+const initialState = {
+    message: 'hi'
+}
+
+function reducer (state, action) {
+    switch (action.type) {
+        case 'yell':
+            return {
+                message: `HEY...... previous I said ${state.message}`
+            }
+        
+        case 'greetings':
+            return {
+                message: `Hello dear`
+            }
+        
+        case 'leave':
+            return {
+                message:`Bye dear`
+            }
+        
+        default:
+            return state
+
+    }
+}
+
+function Welcome () {
+    const [state, dispatch] = useReducer( reducer, initialState)
+
+    return (
+        <div className="welcome">
+            <h4>Greetings messages</h4>
+            <p>{state.message}</p>
+            <button
+            onClick={()=> dispatch({type:'yell'})}
+            >yell
+            </button>
+            {'   '}
+            <button
+            onClick={()=> dispatch({type:'greetings'})}
+            >Greet
+            </button>
+            {'   '}
+            <button
+            onClick={()=> dispatch({type:'leave'})}
+            >leave
+            </button>
+        </div>
+    )
+}
+
 
 const ReducerHook = () => {
     return (
@@ -61,6 +115,7 @@ const ReducerHook = () => {
             <h1>Exploring useReducer Hook</h1>
             <Increament/>
             <CBox/>
+            <Welcome/>
         </div>
     )
 }
