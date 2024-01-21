@@ -1,6 +1,7 @@
 import {createRoot} from 'react-dom/client';
 import StateHook from './components/StateHook';
 import EffectHook from './components/EffectHook';
+import ReducerHook from './components/ReducerHook';
 
 
 const App = () => {
@@ -9,6 +10,7 @@ const App = () => {
             <h1>Hola from the react</h1>
             <StateHook/>
             <EffectHook/>
+            <ReducerHook/>
         </div>
     )
 }
