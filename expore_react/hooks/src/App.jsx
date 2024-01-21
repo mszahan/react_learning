@@ -5,6 +5,7 @@ import ReducerHook from './components/ReducerHook';
 import RefHook from './components/RefHook';
 import CustomForm from './components/CustomFrom';
 import ContextCheck from './components/ContextCheck';
+import DataFetch from './components/DataFetch';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
             <RefHook/>
             <CustomForm/>
             <ContextCheck/>
+            <DataFetch login={'mszahan'}/>
         </div>
     )
 }
