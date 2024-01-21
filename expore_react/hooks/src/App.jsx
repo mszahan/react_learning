@@ -3,6 +3,7 @@ import StateHook from './components/StateHook';
 import EffectHook from './components/EffectHook';
 import ReducerHook from './components/ReducerHook';
 import RefHook from './components/RefHook';
+import CustomForm from './components/CustomFrom';
 
 
 const App = () => {
@@ -13,6 +14,7 @@ const App = () => {
             <EffectHook/>
             <ReducerHook/>
             <RefHook/>
+            <CustomForm/>
         </div>
     )
 }
