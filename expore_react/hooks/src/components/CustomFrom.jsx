@@ -14,10 +14,9 @@ function CustomForm () {
         resetTitle();
     }
 
-    console.log(titleProps)
-
     return (
         <div className="ref-form">
+            <h1>Exploring custom hook</h1>
             <p>controlled form with custom hook</p>
             <form onSubmit={handleSubmit}>
 

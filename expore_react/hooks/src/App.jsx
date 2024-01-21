@@ -4,7 +4,7 @@ import EffectHook from './components/EffectHook';
 import ReducerHook from './components/ReducerHook';
 import RefHook from './components/RefHook';
 import CustomForm from './components/CustomFrom';
-
+import ContextCheck from './components/ContextCheck';
 
 const App = () => {
     return (
@@ -15,6 +15,7 @@ const App = () => {
             <ReducerHook/>
             <RefHook/>
             <CustomForm/>
+            <ContextCheck/>
         </div>
     )
 }
