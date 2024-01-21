@@ -1,5 +1,6 @@
 import {createRoot} from 'react-dom/client';
 import StateHook from './components/StateHook';
+import EffectHook from './components/EffectHook';
 
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
         <div className="App">
             <h1>Hola from the react</h1>
             <StateHook/>
+            <EffectHook/>
         </div>
     )
 }
