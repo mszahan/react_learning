@@ -1,10 +1,12 @@
+import './App.css';
 import { createRoot } from "react-dom/client";
+import TodoList from "./todos/TodoList";
 
 
 const App = () => {
     return (
         <div className="App">
-            <h1>Hello from React vite</h1>
+            <TodoList/>
         </div>
     )
 }

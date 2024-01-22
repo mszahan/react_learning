@@ -25,7 +25,7 @@ npm i -D eslint-plugin-jsx-a11y eslint-plugin-react eslint-plugin-react-hooks
 
 ```
 
-**vite.config.js**
+**vite.config.mjs**
 
 ```
 import { defineConfig } from "vite";
