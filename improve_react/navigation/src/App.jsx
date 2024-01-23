@@ -22,6 +22,7 @@ function App() {
         <Route path="categories" element={<Categories />}>
           <Route path=":catId" element={<Category />} />
         </Route>
+        <Route index element={<h3>Select a category to see the content</h3>}/>
         <Route
           path="*"
           element={<h1 className="not-found">Page Not Found</h1>}
