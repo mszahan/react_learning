@@ -1,5 +1,5 @@
 let age: number = 20
-age = 'fuck'
+// age = 'fuck'
 
 //https://www.youtube.com/watch?v=d56mG7DezGs
 
