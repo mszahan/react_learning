@@ -16,3 +16,13 @@ let hola = {
 }
 
 let dola = [2, 'fuck', false, 'roma']
+
+// tuples
+// it's a regular javascript array
+let user: [number, string] = [4, 'rebecca'];
+
+
+// enum 
+enum Size {Small =1, Medium, Large};
+let mySize = Size.Medium;
+console.log(mySize)
