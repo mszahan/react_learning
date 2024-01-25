@@ -110,3 +110,12 @@ let textBox: UIWidget = {
     resize: () => {}
 
 }
+
+
+// literal types
+// when you need to limit the value within a range or 
+// only two or three things
+type Quantity = 50 | 100;
+let quantity : Quantity = 100;
+
+type Metric = 'cm' | 'inch';
