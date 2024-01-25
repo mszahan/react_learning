@@ -1,10 +1,18 @@
-let age: number = 20
-// age = 'fuck'
+// let products : number = 3234;
+let products = 3234;
 
-//https://www.youtube.com/watch?v=d56mG7DezGs
+// let course : string = 'learn typescript';
+let course = 'learn typescript';
 
-const arr = [3, 'hola', 'fuck'];
+// let is_published : boolean = true;
+let is_published = true;
 
-for (let i=0; i<3; i++) {
-    console.log(arr[i]);
+let ann;
+
+let hola = {
+    name:'hola',
+    bal: 23,
+    chal: 2.0
 }
+
+let dola = [2, 'fuck', false, 'roma']
