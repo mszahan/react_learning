@@ -119,3 +119,33 @@ type Quantity = 50 | 100;
 let quantity : Quantity = 100;
 
 type Metric = 'cm' | 'inch';
+
+
+// using null and undefined value
+function greet(name: string | null | undefined) {
+    if (name) {
+        console.log(name.toUpperCase())
+    } else {
+        console.log('hola')
+    }
+}
+
+greet(undefined);
+
+
+// optional chaining
+type Customer = {
+    birthDay: Date
+};
+
+function getCustomer(id: number) : Customer | null | undefined {
+    return id === 0 ? null : {birthDay: new Date()}
+}
+
+let customer = getCustomer(0);
+
+// if (customer !== null && customer !== undefined) {
+//     console.log(customer.birthDay)
+// }
+
+console.log(customer?.birthDay)
