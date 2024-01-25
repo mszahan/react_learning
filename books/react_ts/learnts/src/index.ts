@@ -41,3 +41,25 @@ function calculatePrice(unitPrice: number, tax:number): number {
 }
 
 calculatePrice(55, 120)
+
+
+// object
+// readonly makes the element immutable
+// ? mark makes the element optional
+
+let employe: {
+    readonly id: number,
+    name: string,
+    isActive?:boolean,
+    retire: (data: Date) => void
+
+} = {
+    id: 1,
+    name: 'Alex',
+    isActive: false,
+    retire: (date: Date) => {
+        return console.log(date);
+    }
+
+    
+}
