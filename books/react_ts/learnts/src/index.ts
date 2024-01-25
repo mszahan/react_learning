@@ -46,7 +46,6 @@ calculatePrice(55, 120)
 // object
 // readonly makes the element immutable
 // ? mark makes the element optional
-
 let employe: {
     readonly id: number,
     name: string,
@@ -62,4 +61,22 @@ let employe: {
     }
 
     
+}
+
+
+// use type aliase to do the same thing with object
+type Employee = {
+    readonly id: number,
+    name: string,
+    isActive?:boolean,
+    retire: (data: Date) => void
+}
+
+ let newEmployee: Employee = {
+    id: 1,
+    name: 'Alex',
+    isActive: false,
+    retire: (date: Date) => {
+        return console.log(date);
+    } 
 }
