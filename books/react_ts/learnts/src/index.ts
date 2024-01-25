@@ -80,3 +80,33 @@ type Employee = {
         return console.log(date);
     } 
 }
+
+// do the union with the types
+function kgToLbs (weight: number | string) : number {
+    if (typeof weight === 'number') {
+        return weight * 2.2;
+    } else {
+        return parseInt(weight) * 2.2
+    }
+}
+
+kgToLbs(10)
+kgToLbs('10')
+
+
+// type intersection example
+type Draggable = {
+    drag: () => void
+}
+
+type Resizable = {
+    resize : () => void
+}
+
+type UIWidget = Draggable & Resizable;
+
+let textBox: UIWidget = {
+    drag: () => {},
+    resize: () => {}
+
+}
