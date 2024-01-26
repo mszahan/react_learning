@@ -1,9 +1,12 @@
-import './App.css';
+// import './App.css';
+import Alert from './components/Alert';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello from the revite with ts</h1>
+      <Alert heading="heading from props" closable={true}>
+        Here is the children
+      </Alert>
     </div>
   );
 }
