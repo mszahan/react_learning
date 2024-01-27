@@ -1,4 +1,4 @@
-import '../styles/Alert.css';
+import styles from '../styles/Alert.module.css';
 import { useState, ReactNode } from 'react';
 
 type Props = {
@@ -23,22 +23,22 @@ function Alert({ type = 'information', heading, children, closable, onClose }: P
     }
   }
   return (
-    <div className={`container ${type}`}>
-      <div className='header'>
+    <div className={`${styles.container} ${styles[type]}`}>
+      <div className={styles.header}>
         <span 
         role="img" 
         aria-label={type === 'warning' ? 'Warning' : 'Information'}
-        className='header-icon'
+        className={styles.headerIcon}
         >
           {type === 'warning' ? '⚠' : 'ℹ️'}
         </span>
 
-        <span className='header-text'>{heading}</span>
+        <span className={styles.headerText}>{heading}</span>
         {closable && (
           <button 
           aria-label="Close" 
           onClick={handleCloseClick}
-          className='close-button'
+          className={styles.closeButton}
           >
             <span role="img" aria-label="Close">
               ❌
@@ -48,7 +48,7 @@ function Alert({ type = 'information', heading, children, closable, onClose }: P
       </div>
 
 
-      <div className='content'>{children}</div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }
