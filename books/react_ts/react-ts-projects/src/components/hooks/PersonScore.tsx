@@ -1,4 +1,5 @@
-import { useEffect, useReducer, useRef, useMemo } from 'react';
+import { useEffect, useReducer, useRef, useMemo, useCallback } from 'react';
+import { Reset } from './Reset';
 import { getPerson } from './getPerson';
 
 
@@ -99,6 +100,11 @@ export function PersonScore() {
     []
   );
 
+  const handleReset = useCallback(
+    () => dispatch({type:'reset'}),
+    []
+  ) ;
+
   if (loading) {
     return <div>Loading....</div>
   }
@@ -111,7 +117,8 @@ export function PersonScore() {
       <p>{expensiveCalculation}</p>
       <button ref={addButtonRef} onClick={() => dispatch({type: 'increment'})}>Add</button>
       <button onClick={() => dispatch({type: 'decrement'})}>Subtract</button>
-      <button onClick={() => dispatch({type:'reset'})}>Reset</button>
+      <Reset onClick={handleReset}/>
+      {/* <button onClick={() => dispatch({type:'reset'})}>Reset</button> */}
     </div>
   );
 }
