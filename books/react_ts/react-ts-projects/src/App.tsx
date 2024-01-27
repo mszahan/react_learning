@@ -1,12 +1,14 @@
 // import './App.css';
-import Alert from './components/Alert';
+// import Alert from './components/Alert';
+import { PersonScore } from './components/hooks/PersonScore';
 
 function App() {
   return (
     <div className="App">
-      <Alert heading="heading from props" closable={true}>
+      {/* <Alert heading="heading from props" closable={true}>
         Here is the children
-      </Alert>
+      </Alert> */}
+      <PersonScore />
     </div>
   );
 }
