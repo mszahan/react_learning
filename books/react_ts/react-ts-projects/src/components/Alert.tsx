@@ -34,7 +34,12 @@ function Alert({ type = 'information', heading, children, closable, onClose }: P
         aria-label={type === 'warning' ? 'Warning' : 'Information'}
         className={styles.headerIcon}
         >
-          {type === 'warning' ? '⚠' : 'ℹ️'}
+          {
+            type === 'warning' ?
+             '⚠' 
+             : 
+             'ℹ️'
+          }
         </span>
 
         <span className='font-bold'>{heading}</span>
@@ -42,7 +47,7 @@ function Alert({ type = 'information', heading, children, closable, onClose }: P
           <button 
           aria-label="Close" 
           onClick={handleCloseClick}
-          className='border-none bg-transparent ml-auto curso-pointer'
+          className='border-none bg-transparent ml-auto cursor-pointer'
           >
             <span role="img" aria-label="Close">
               ❌
