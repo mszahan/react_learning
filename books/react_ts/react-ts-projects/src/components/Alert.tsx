@@ -1,5 +1,9 @@
 import styles from '../styles/Alert.module.css';
 import { useState, ReactNode } from 'react';
+import { ReactComponent as CrossIcon } from '../assets/cross.svg'
+import { ReactComponent as InfoIcon } from '../assets/info.svg'
+import { ReactComponent as WarningIcon } from '../assets/warning.svg'
+
 
 type Props = {
   type?: string;
