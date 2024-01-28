@@ -33,12 +33,12 @@ function Alert({ type = 'information', heading, children, closable, onClose }: P
           {type === 'warning' ? '⚠' : 'ℹ️'}
         </span>
 
-        <span className={styles.headerText}>{heading}</span>
+        <span className='font-bold'>{heading}</span>
         {closable && (
           <button 
           aria-label="Close" 
           onClick={handleCloseClick}
-          className={styles.closeButton}
+          className='border-none bg-transparent ml-auto curso-pointer'
           >
             <span role="img" aria-label="Close">
               ❌
