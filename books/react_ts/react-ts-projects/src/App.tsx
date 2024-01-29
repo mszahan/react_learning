@@ -1,16 +1,11 @@
-// import './App.css';
-import Alert from './components/Alert';
-import { PersonScore } from './components/hooks/PersonScore';
+import { Outlet } from "react-router-dom";
+import { Header } from "./components/Header";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <Alert heading="Success" closable={true}>
-        Here is the children
-      </Alert>
-      <PersonScore />
-    </div>
-  );
+    <>
+      <Header/>
+      <Outlet/>
+    </>
+  )
 }
-
-export default App;

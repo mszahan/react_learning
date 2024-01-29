@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from '../assets/react.svg'
 
 export function Header() {
@@ -11,12 +11,18 @@ export function Header() {
             />
             <h1 className="text-2xl">React Tools</h1>
             <nav>
-                <Link 
+                <NavLink 
                 to='products'
-                className="text-white no-underline p-1"
+                className={({isActive}) => 
+                            `
+                            text-white no-underline p-1 pb-0.5 border-solid border-b-2
+                            ${isActive ? 'border-white' : 'border-transparent'}
+                            
+                            `
+                            }
                 >
                     Products
-                </Link>
+                </NavLink>
             </nav>
         </header>
     )
