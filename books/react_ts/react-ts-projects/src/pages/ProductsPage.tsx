@@ -27,7 +27,7 @@ export function ProductsPage() {
                         <li key={product.id}>
                             <Link 
                             to={`${product.id}`}
-                            className="p-1 text-base text-slate-800"
+                            className="p-1 text-base text-slate-800 hover:underline"
                             >
                                 {product.name}
                             </Link>
