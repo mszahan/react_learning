@@ -46,7 +46,7 @@ export function Header() {
                 <h1 className="text-2xl">React Tools</h1>
             </Link>
 
-            <nav>
+            <nav className="flex flex-row gap-4 justify-center">
                 <NavLink 
                 to='products'
                 className={({isActive}) => 
@@ -70,6 +70,18 @@ export function Header() {
                             }
                 >
                     Admin
+                </NavLink>
+                <NavLink 
+                to='contact'
+                className={({isActive}) => 
+                            `
+                            text-white no-underline p-1 pb-0.5 border-solid border-b-2
+                            ${isActive ? 'border-white' : 'border-transparent'}
+                            
+                            `
+                            }
+                >
+                    Contact
                 </NavLink>
             </nav>
         </header>

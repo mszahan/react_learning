@@ -5,6 +5,7 @@ import App from "./App";
 import { ProductPage } from "./pages/ProductPage";
 import { ErrorPage } from "./pages/ErrorPage";
 import { HomePage } from "./pages/HomePage";
+import { ContactPage } from "./pages/ContactPage";
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
                 path: 'products/:id',
                 element: <ProductPage/>,
 
+            },
+            {
+                path: 'contact',
+                element: <ContactPage/>,
             },
 
             {
