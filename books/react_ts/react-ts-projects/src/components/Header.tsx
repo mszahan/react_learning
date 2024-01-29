@@ -1,9 +1,11 @@
 import { FormEvent } from "react";
-import { NavLink, Link, useSearchParams } from "react-router-dom";
+import { NavLink, Link, useSearchParams, useNavigate } from "react-router-dom";
 import logo from '../assets/react.svg'
 
 export function Header() {
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
+    // const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
     function handleSearchSubmit (e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         // use the JavaScript FormData interface to get the value of the search field
@@ -11,8 +13,9 @@ export function Header() {
 
         // use a type assertion to set the type of the search field value to a string
         const search = formData.get('search') as string;
-        
-        setSearchParams({search})
+
+        // setSearchParams({search})
+        navigate(`/products/?search=${search}`)
     }
 
     return (
