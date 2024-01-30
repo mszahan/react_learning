@@ -1,5 +1,6 @@
-import {useForm} from 'react-hook-form';
+import { useForm, FieldError } from 'react-hook-form';
 import { useNavigate } from "react-router-dom";
+import { ValidationError } from './ValidationError';
 
 type Contact = {
     name: string;
@@ -9,11 +10,19 @@ type Contact = {
 };
 
 export function ContactPage() {
-    const { register, handleSubmit } = useForm <Contact>();
+    const { register, handleSubmit, 
+        formState: {errors} } = useForm <Contact>({
+        mode:'onBlur',
+        reValidateMode: 'onBlur'
+    });
+
     const navigate = useNavigate();
     function onSubmit (contact: Contact) {
         console.log('Submitted details:', contact)
         navigate(`/thank-you/${contact.name}`)
+    }
+    function getEditorStyle(fieldError: FieldError | undefined) {
+        return fieldError ? 'border-red-500 rounded' : 'rounded';
     }
 
     const fielStyle = 'flex flex-col mb-2'
@@ -26,38 +35,43 @@ export function ContactPage() {
                 Please enter your details for contact
             </p>
 
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className={fielStyle}>
                     <label htmlFor="name">Name</label>
                     <input 
-                    {...register('name')}
-                    className="rounded"
+                    {...register('name', {required: 'You must enter your name'})}
+                    className={getEditorStyle(errors.name)}
                     type="text"
-                    required
                     id="name"/>
+                    <ValidationError fieldError={errors.name}/>
                 </div>
                 <div className={fielStyle}>
                     <label htmlFor="email">Email</label>
                     <input 
-                    {...register('email')}
-                    className="rounded"
+                    {...register('email', {
+                        required: 'You must enter your Email',
+                        pattern: {
+                            value: /\S+@\S+\.\S+/,
+                            message: 'Email is not valid'
+                        }
+                    })}
+                    className={getEditorStyle(errors.email)}
                     type="email" 
-                    required
-                    pattern="\S+@\S+\.\S+"
                     id="email"/>
+                    <ValidationError fieldError={errors.email}/>
                 </div>
                 <div className={fielStyle}>
                     <label htmlFor="reason"> Reason you need to contact us</label>
                     <select 
-                    {...register('reason')}
-                    className="rounded"
-                    required
+                    {...register('reason', {required: 'You must provide the reason'})}
+                    className={getEditorStyle(errors.reason)}
                     id="reason">
                         <option value=""></option>
                         <option value="Support">Support</option>
                         <option value="Feedback">Feedback</option>
                         <option value="Other">Other</option>
                     </select>
+                    <ValidationError fieldError={errors.reason}/>
                 </div>
                 <div className={fielStyle}>
                     <label htmlFor="notes">Additional notes</label>
