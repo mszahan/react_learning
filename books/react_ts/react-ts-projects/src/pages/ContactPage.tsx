@@ -1,5 +1,5 @@
-// import {FormEvent } from "react";
-import { Form, ActionFunctionArgs, redirect } from "react-router-dom";
+import {useForm} from 'react-hook-form';
+import { useNavigate } from "react-router-dom";
 
 type Contact = {
     name: string;
@@ -9,27 +9,14 @@ type Contact = {
 };
 
 export function ContactPage() {
-    // const [contact, setContact] = useState <Contact> ({
-    //     name:'',
-    //     email: '',
-    //     reason: '',
-    //     notes: '',
-    // })
-
-    // function handleSubmit (e: FormEvent<HTMLFormElement>) {
-    //     e.preventDefault();
-    //     const formData = new FormData(e.currentTarget);
-    //     const contact = {
-    //         name: formData.get('name'),
-    //         email: formData.get('email'),
-    //         reason: formData.get('reason'),
-    //         notes: formData.get('notes'),
-    //     } as Contact;
-    //     console.log('Submitted details:', contact)
-    // }
+    const { register, handleSubmit } = useForm <Contact>();
+    const navigate = useNavigate();
+    function onSubmit (contact: Contact) {
+        console.log('Submitted details:', contact)
+        navigate(`/thank-you/${contact.name}`)
+    }
 
     const fielStyle = 'flex flex-col mb-2'
-
     return (
         <div className="py-10 max-w-md mx-auto">
             <h2 className='text-3xl font-bold mb-3'>
@@ -39,22 +26,22 @@ export function ContactPage() {
                 Please enter your details for contact
             </p>
 
-            <Form method="post">
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <div className={fielStyle}>
                     <label htmlFor="name">Name</label>
                     <input 
+                    {...register('name')}
                     className="rounded"
-                    type="text" 
-                    name="name"
+                    type="text"
                     required
                     id="name"/>
                 </div>
                 <div className={fielStyle}>
                     <label htmlFor="email">Email</label>
                     <input 
+                    {...register('email')}
                     className="rounded"
                     type="email" 
-                    name="email"
                     required
                     pattern="\S+@\S+\.\S+"
                     id="email"/>
@@ -62,8 +49,8 @@ export function ContactPage() {
                 <div className={fielStyle}>
                     <label htmlFor="reason"> Reason you need to contact us</label>
                     <select 
+                    {...register('reason')}
                     className="rounded"
-                    name="reason"
                     required
                     id="reason">
                         <option value=""></option>
@@ -75,8 +62,8 @@ export function ContactPage() {
                 <div className={fielStyle}>
                     <label htmlFor="notes">Additional notes</label>
                     <textarea 
+                    {...register('notes')}
                     className="rounded"
-                    name="notes"
                     id="notes"></textarea>
                 </div>
                 <div>
@@ -88,23 +75,8 @@ export function ContactPage() {
                     </button>
                 </div>
 
-            </Form>
+            </form>
             
         </div>
     )
-}
-
-export async function contactPageAction ({request, }: ActionFunctionArgs) {
-    const formData = await request.formData();
-    const contact = {
-        name: formData.get('name'),
-        email: formData.get('email'),
-        reason: formData.get('reason'),
-        notes: formData.get('notes'),
-    } as Contact;
-    console.log('Submitted details:', contact)
-
-    return redirect (
-        `/thank-you/${formData.get('name')}`
-    );
 }
