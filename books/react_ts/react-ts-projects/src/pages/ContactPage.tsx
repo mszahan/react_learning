@@ -1,4 +1,5 @@
-import {FormEvent } from "react";
+// import {FormEvent } from "react";
+import { Form, ActionFunctionArgs, redirect } from "react-router-dom";
 
 type Contact = {
     name: string;
@@ -15,17 +16,17 @@ export function ContactPage() {
     //     notes: '',
     // })
 
-    function handleSubmit (e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        const formData = new FormData(e.currentTarget);
-        const contact = {
-            name: formData.get('name'),
-            email: formData.get('email'),
-            reason: formData.get('reason'),
-            notes: formData.get('notes'),
-        } as Contact;
-        console.log('Submitted details:', contact)
-    }
+    // function handleSubmit (e: FormEvent<HTMLFormElement>) {
+    //     e.preventDefault();
+    //     const formData = new FormData(e.currentTarget);
+    //     const contact = {
+    //         name: formData.get('name'),
+    //         email: formData.get('email'),
+    //         reason: formData.get('reason'),
+    //         notes: formData.get('notes'),
+    //     } as Contact;
+    //     console.log('Submitted details:', contact)
+    // }
 
     const fielStyle = 'flex flex-col mb-2'
 
@@ -38,7 +39,7 @@ export function ContactPage() {
                 Please enter your details for contact
             </p>
 
-            <form onSubmit={handleSubmit}>
+            <Form method="post">
                 <div className={fielStyle}>
                     <label htmlFor="name">Name</label>
                     <input 
@@ -83,8 +84,23 @@ export function ContactPage() {
                     </button>
                 </div>
 
-            </form>
+            </Form>
             
         </div>
     )
+}
+
+export async function contactPageAction ({request, }: ActionFunctionArgs) {
+    const formData = await request.formData();
+    const contact = {
+        name: formData.get('name'),
+        email: formData.get('email'),
+        reason: formData.get('reason'),
+        notes: formData.get('notes'),
+    } as Contact;
+    console.log('Submitted details:', contact)
+
+    return redirect (
+        `/thank-you/${formData.get('name')}`
+    );
 }
