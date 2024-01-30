@@ -8,7 +8,7 @@ type Contact = {
     notes:string;
 };
 
-export function ContactPage() {
+export function OldContactPage() {
     // const [contact, setContact] = useState <Contact> ({
     //     name:'',
     //     email: '',
@@ -94,7 +94,7 @@ export function ContactPage() {
     )
 }
 
-export async function contactPageAction ({request, }: ActionFunctionArgs) {
+export async function oldcontactPageAction ({request, }: ActionFunctionArgs) {
     const formData = await request.formData();
     const contact = {
         name: formData.get('name'),
