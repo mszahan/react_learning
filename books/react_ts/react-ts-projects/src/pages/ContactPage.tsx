@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import {FormEvent } from "react";
 
 type Contact = {
     name: string;
@@ -8,16 +8,23 @@ type Contact = {
 };
 
 export function ContactPage() {
-    const [contact, setContact] = useState <Contact> ({
-        name:'',
-        email: '',
-        reason: '',
-        notes: '',
-    })
+    // const [contact, setContact] = useState <Contact> ({
+    //     name:'',
+    //     email: '',
+    //     reason: '',
+    //     notes: '',
+    // })
 
     function handleSubmit (e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        console.log('Submitted details', contact)
+        const formData = new FormData(e.currentTarget);
+        const contact = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            reason: formData.get('reason'),
+            notes: formData.get('notes'),
+        } as Contact;
+        console.log('Submitted details:', contact)
     }
 
     const fielStyle = 'flex flex-col mb-2'
@@ -36,26 +43,23 @@ export function ContactPage() {
                     <label htmlFor="name">Name</label>
                     <input 
                     className="rounded"
-                    value={contact.name}
-                    onChange={e => setContact({...contact, name: e.target.value})}
                     type="text" 
+                    name="name"
                     id="name"/>
                 </div>
                 <div className={fielStyle}>
                     <label htmlFor="email">Email</label>
                     <input 
                     className="rounded"
-                    value={contact.email}
-                    onChange={e => setContact({...contact, email: e.target.value})}
                     type="email" 
+                    name="email"
                     id="email"/>
                 </div>
                 <div className={fielStyle}>
                     <label htmlFor="reason"> Reason you need to contact us</label>
                     <select 
                     className="rounded"
-                    value={contact.reason}
-                    onChange={e => setContact({...contact, reason: e.target.value})}
+                    name="reason"
                     id="reason">
                         <option value=""></option>
                         <option value="Support">Support</option>
@@ -67,8 +71,7 @@ export function ContactPage() {
                     <label htmlFor="notes">Additional notes</label>
                     <textarea 
                     className="rounded"
-                    value={contact.notes}
-                    onChange={e => setContact({...contact, notes: e.target.value})}
+                    name="notes"
                     id="notes"></textarea>
                 </div>
                 <div>
