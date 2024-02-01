@@ -1,21 +1,34 @@
 // import { FormEvent } from "react";
 import { NavLink, Link, useSearchParams, Form } from "react-router-dom";
 import logo from '../assets/react.svg'
-import { User } from "../api/authenticate";
-
-type Props = {
-    user: undefined | User;
-    onSignInClick: () => void;
-    loading: boolean;
-}
+// import { User } from "../api/authenticate";
+import { authenticate } from "../api/authenticate";
+import { authorize } from "../api/authorize";
+import { useAppContext } from "./AppContext";
 
 
+// type Props = {
+//     user: undefined | User;
+//     onSignInClick: () => void;
+//     loading: boolean;
+// }
 
-export function Header({
-    user,
-    onSignInClick,
-    loading,
-}: Props) {
+
+
+export function Header() {
+
+    const {user, loading, dispatch} = useAppContext();
+
+    async function handleSignInClick () {
+        dispatch({type: 'authenticate'});
+        const authenticatedUser = await authenticate();
+        dispatch({ type: 'authenticated', user:authenticatedUser});
+        if (authenticatedUser !== undefined) {
+          dispatch({type: 'authorize'});
+          const autorizedPermissions = await authorize(authenticatedUser.id);
+          dispatch({type: 'authorized', permissions:autorizedPermissions})
+        }
+      }
     
     
     return (
@@ -32,7 +45,7 @@ export function Header({
                             </span>
                         ) : (
                             <button
-                            onClick={onSignInClick}
+                            onClick={handleSignInClick}
                             disabled={loading}
                             className="whitespace-nowrap inline-flex items-center
                             justify-center ml-auto px-4 py-2 w-36 border border-transparent rounded-md
