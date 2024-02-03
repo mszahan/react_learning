@@ -1,5 +1,7 @@
 import { Content } from "./Content";
-import { useAppContext } from "./AppContext";
+// import { useAppContext } from "./AppContext";
+import { useSelector } from "react-redux";
+import { RootState } from "../store/Store";
 
 // type Props = {
 //     user: undefined | User;
@@ -7,7 +9,10 @@ import { useAppContext } from "./AppContext";
 // };
 
 export function Main () {
-    const {user} = useAppContext();
+    // const {user} = useAppContext();
+    const user = useSelector(
+        (state: RootState) => state.user.user
+    )
     return (
         <main className="py-8">
             <h1 className="text-3xl text-center font-bold">

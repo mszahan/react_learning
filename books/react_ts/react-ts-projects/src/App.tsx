@@ -1,10 +1,14 @@
 // import { useReducer } from "react";
 import { Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
+import { store } from "./store/Store";
+
 import { Header } from "./components/Header";
 import { Main } from "./components/Main";
+
 // import { authenticate, User } from "./api/authenticate";
 // import { authorize } from "./api/authorize";
-import { AppProvider } from "./components/AppContext";
+// import { AppProvider } from "./components/AppContext";
 
 
 export default function App() {
@@ -14,11 +18,10 @@ export default function App() {
 
   return (
     <>
-
-    <AppProvider>
-      <Header/>
-      <Main/>
-    </AppProvider>
+      <Provider store={store}>
+        <Header/>
+        <Main/>
+      </Provider>
       <Outlet/>
     </>
   )
