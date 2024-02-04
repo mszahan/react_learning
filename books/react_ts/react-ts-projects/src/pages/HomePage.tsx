@@ -9,6 +9,9 @@ export function HomePage() {
                 sed ea qui eum harum aliquid odit consequuntur sint maxime ipsam
                  veritatis dolorem, mollitia ex.
             </p>
+            <p>
+                {import.meta.env.VITE_API_URL}
+            </p>
         </div>
     )
 }
