@@ -25,8 +25,8 @@ export function assertIsPosts(
         if(!('id' in post)) {
             throw new Error('post does not contain id');
         }
-        if (typeof post.id !== 'number') {
-            throw new Error('id is not a number')
+        if (typeof post.id !== 'string') {
+            throw new Error('id is not a sting')
         }
         if (!('title' in post)) {
             throw new Error("Post does not contain tittle");
