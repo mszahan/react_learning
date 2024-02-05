@@ -19,6 +19,11 @@
       "id": "e21f",
       "title": "The post to show sojib",
       "description": "this is the another post from browser"
+    },
+    {
+      "id": "d895",
+      "title": "The post from the react-router-dom loader data",
+      "description": "used react-router-dom's loader features instead of the useEffect."
     }
   ]
 }

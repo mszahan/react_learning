@@ -9,6 +9,7 @@ import { ContactPage } from "./pages/ContactPage";
 import { ThanksPage } from "./pages/ThanksPage";
 import { PostPage } from "./posts/PostPage";
 import ConflictPage from "./pages/ConflictPage";
+import { getPosts } from "./posts/getPosts";
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
@@ -41,6 +42,7 @@ const router = createBrowserRouter([
             {
                 path: '/posts',
                 element: <PostPage/>,
+                loader: getPosts
             },
 
             {
