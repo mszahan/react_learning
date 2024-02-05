@@ -24,6 +24,11 @@
       "id": "d895",
       "title": "The post from the react-router-dom loader data",
       "description": "used react-router-dom's loader features instead of the useEffect."
+    },
+    {
+      "id": "1fcb",
+      "title": "using suspense from react and Await from router",
+      "description": "implemented the fetching and auto loading updated data through async in loader and utilizing the Suspense and Await"
     }
   ]
 }

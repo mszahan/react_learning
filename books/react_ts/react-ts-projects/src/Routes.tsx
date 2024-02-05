@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, defer } from "react-router-dom";
 import { ProductsPage } from "./pages/ProductsPage";
 import App from "./App";
 import { ProductPage } from "./pages/ProductPage";
@@ -42,7 +42,7 @@ const router = createBrowserRouter([
             {
                 path: '/posts',
                 element: <PostPage/>,
-                loader: getPosts
+                loader: async () => defer({posts: getPosts()})
             },
 
             {
