@@ -8,6 +8,7 @@ import { HomePage } from "./pages/HomePage";
 import { ContactPage } from "./pages/ContactPage";
 import { ThanksPage } from "./pages/ThanksPage";
 import { PostPage } from "./posts/PostPage";
+import ConflictPage from "./pages/ConflictPage";
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 
@@ -31,6 +32,10 @@ const router = createBrowserRouter([
                 path: 'products/:id',
                 element: <ProductPage/>,
 
+            },
+            {
+                path: 'products/:conflict',
+                element: <ConflictPage/>
             },
 
             {
