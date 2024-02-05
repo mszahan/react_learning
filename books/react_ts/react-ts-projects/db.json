@@ -1,14 +1,24 @@
 {
-    "posts": [
-        {
-            "title": "Getting started with fetch with useEffect",
-            "description": "In this section we will learn about the fetch builtin feature of js to  explore the rest api ",
-            "id": 1
-        },
-        {
-            "title": "Learning the react query to discurd the useEffect",
-            "description": " Don't know why but useEffect is really annoying and it's reccomended to ignore it. Instead we will use a famous react library called query",
-            "id": 2
-        }
-    ]
+  "posts": [
+    {
+      "title": "Getting started with fetch with useEffect",
+      "description": "In this section we will learn about the fetch builtin feature of js to  explore the rest api ",
+      "id": "1"
+    },
+    {
+      "title": "Learning the react query to discurd the useEffect",
+      "description": " Don't know why but useEffect is really annoying and it's reccomended to ignore it. Instead we will use a famous react library called query",
+      "id": "2"
+    },
+    {
+      "id": "c6c1",
+      "title": "Posted from the browser",
+      "description": "The is pos is added through the api and the react ui"
+    },
+    {
+      "id": "e21f",
+      "title": "The post to show sojib",
+      "description": "this is the another post from browser"
+    }
+  ]
 }
