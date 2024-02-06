@@ -29,6 +29,16 @@
       "id": "1fcb",
       "title": "using suspense from react and Await from router",
       "description": "implemented the fetching and auto loading updated data through async in loader and utilizing the Suspense and Await"
+    },
+    {
+      "id": "71b2",
+      "title": "React query",
+      "description": "data with reactquery"
+    },
+    {
+      "id": "f81a",
+      "title": "The post from react query",
+      "description": "tried to fix the issue with useMutation"
     }
   ]
 }

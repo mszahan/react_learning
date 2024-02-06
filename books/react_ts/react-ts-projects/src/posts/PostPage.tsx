@@ -1,21 +1,43 @@
 // import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import { useLoaderData, Await } from "react-router-dom";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 // import { getPosts } from "./getPosts";
-import { NewPostData, PostData } from "./types";
+import { PostData } from "./types";
 import { PostList } from "./PostList";
 import { savePost } from "./savePost";
 import { NewPostForm } from "./NewPostForm";
-import { assertIsPosts } from "./getPosts";
+import { assertIsPosts, getPosts } from "./getPosts";
 
 
 
 export function PostPage() {
-    const data = useLoaderData();
-    assertIsData(data);
+    const {isLoading, isFetching, data:posts} = 
+    useQuery({queryKey: ['postData'], queryFn:getPosts})
+    const queryClient = useQueryClient();
+    const {mutate} = useMutation({mutationFn: savePost, onSuccess: 
+                (savedPost) => {
+            queryClient.setQueryData<PostData[]> (
+                ['postData'],
+                (oldPosts) => {
+                    if (oldPosts === undefined) {
+                        return [savedPost]
+                    } else {
+                        return [savedPost, ...oldPosts]
+                    }
+                }
+            )
+        }
+});
+
+    // const data = useLoaderData();
+    // assertIsData(data);
+
+
     // assertIsPosts(posts)
     // const [isLoading, setIsLoading] = useState(true);
     // const [posts, setPosts] = useState<PostData[]> ([]);
+    // so let's taste the cpu for another thing I guess
 
     // useEffect(() => {
     //     let cancel = false;
@@ -30,27 +52,35 @@ export function PostPage() {
     //     }
     // });
 
-    async function handleSave(newPostData: NewPostData) {
-        await savePost(newPostData);
-        // const newPost = await savePost(newPostData);
-        // setPosts([newPost, ...posts])
-    }
-
-    // if (isLoading) {
-    //     return (
-    //         <div className="w-96 mx-auto mt-6">
-    //             Loading...
-    //         </div>
-    //     )
+    // async function handleSave(newPostData: NewPostData) {
+    //     await savePost(newPostData);
+    //     // const newPost = await savePost(newPostData);
+    //     // setPosts([newPost, ...posts])
     // }
+
+    if (isLoading || posts === undefined) {
+        return (
+            <div className="w-96 mx-auto mt-6">
+                Loading...
+            </div>
+        )
+    }
 
     return (
         <div className="w-96 mx-auto mt-6">
             <h2 className="text-xl text-slate-900 font-bold">
                 Posts
             </h2>
-            <NewPostForm onSave={handleSave}/>
-            <Suspense fallback={<div>Fetching...</div>}>
+            <NewPostForm onSave={mutate}/>
+            {
+                isFetching ? (
+                    <div>Fetching...</div>
+                ) : (
+                    <PostList posts={posts}/>
+                )
+            }
+
+            {/* <Suspense fallback={<div>Fetching...</div>}>
                 <Await resolve={data.posts}>
                     {
                         posts => {
@@ -59,7 +89,7 @@ export function PostPage() {
                         }
                     }
                 </Await>
-            </Suspense>
+            </Suspense> */}
         </div>
     )
 }

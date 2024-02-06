@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider, defer } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ProductsPage } from "./pages/ProductsPage";
 import App from "./App";
 import { ProductPage } from "./pages/ProductPage";
@@ -12,6 +13,7 @@ import ConflictPage from "./pages/ConflictPage";
 import { getPosts } from "./posts/getPosts";
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
@@ -42,7 +44,15 @@ const router = createBrowserRouter([
             {
                 path: '/posts',
                 element: <PostPage/>,
-                loader: async () => defer({posts: getPosts()})
+                loader: async () => {
+                    const existingData = queryClient.getQueryData(['postData',]);
+                    if (existingData) {
+                        return defer({posts: existingData})
+                    }
+                    return defer({posts: queryClient.fetchQuery(
+                        {queryKey:['postData'], queryFn:getPosts}
+                        )})
+                }
             },
 
             {
@@ -76,5 +86,9 @@ const router = createBrowserRouter([
 ]);
 
 export function Routes() {
-    return <RouterProvider router={router}/>
+    return (
+        <QueryClientProvider client={queryClient}>
+            <RouterProvider router={router}/>
+        </QueryClientProvider>
+    )
 }
