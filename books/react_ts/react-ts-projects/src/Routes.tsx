@@ -12,6 +12,7 @@ import { PostPage } from "./posts/PostPage";
 import ConflictPage from "./pages/ConflictPage";
 import { getPosts } from "./posts/getPosts";
 
+
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const queryClient = new QueryClient();
 
