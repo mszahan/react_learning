@@ -11,6 +11,7 @@ import { ThanksPage } from './pages/ThanksPage';
 import { PostPage } from './posts/PostPage';
 import ConflictPage from './pages/ConflictPage';
 import { getPosts } from './posts/getPosts';
+import GitHub from './github/GitHub';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const queryClient = new QueryClient();
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
                 path: 'contact',
                 element: <ContactPage />,
                 // action: contactPageAction,
+            },
+
+            {
+                path: 'github',
+                element: <GitHub />,
             },
 
             {
