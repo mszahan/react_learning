@@ -1,95 +1,93 @@
-import { lazy, Suspense } from "react";
-import { createBrowserRouter, RouterProvider, defer } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ProductsPage } from "./pages/ProductsPage";
-import App from "./App";
-import { ProductPage } from "./pages/ProductPage";
-import { ErrorPage } from "./pages/ErrorPage";
-import { HomePage } from "./pages/HomePage";
-import { ContactPage } from "./pages/ContactPage";
-import { ThanksPage } from "./pages/ThanksPage";
-import { PostPage } from "./posts/PostPage";
-import ConflictPage from "./pages/ConflictPage";
-import { getPosts } from "./posts/getPosts";
-
+import { lazy, Suspense } from 'react';
+import { createBrowserRouter, RouterProvider, defer } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ProductsPage } from './pages/ProductsPage';
+import App from './App';
+import { ProductPage } from './pages/ProductPage';
+import { ErrorPage } from './pages/ErrorPage';
+import { HomePage } from './pages/HomePage';
+import { ContactPage } from './pages/ContactPage';
+import { ThanksPage } from './pages/ThanksPage';
+import { PostPage } from './posts/PostPage';
+import ConflictPage from './pages/ConflictPage';
+import { getPosts } from './posts/getPosts';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element: <App/>,
-        errorElement: <ErrorPage/>,
+        path: '/',
+        element: <App />,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
-                element: <HomePage/>
+                element: <HomePage />,
             },
 
             {
                 path: 'products',
-                element: <ProductsPage/>,
+                element: <ProductsPage />,
             },
-            
+
             {
                 path: 'products/:id',
-                element: <ProductPage/>,
-
+                element: <ProductPage />,
             },
             {
                 path: 'products/:conflict',
-                element: <ConflictPage/>
+                element: <ConflictPage />,
             },
 
             {
                 path: '/posts',
-                element: <PostPage/>,
+                element: <PostPage />,
                 loader: async () => {
-                    const existingData = queryClient.getQueryData(['postData',]);
+                    const existingData = queryClient.getQueryData(['postData']);
                     if (existingData) {
-                        return defer({posts: existingData})
+                        return defer({ posts: existingData });
                     }
-                    return defer({posts: queryClient.fetchQuery(
-                        {queryKey:['postData'], queryFn:getPosts}
-                        )})
-                }
+                    return defer({
+                        posts: queryClient.fetchQuery({
+                            queryKey: ['postData'],
+                            queryFn: getPosts,
+                        }),
+                    });
+                },
             },
 
             {
                 path: 'contact',
-                element: <ContactPage/>,
+                element: <ContactPage />,
                 // action: contactPageAction,
             },
 
             {
                 path: '/thank-you/:name',
-                element: <ThanksPage/>
+                element: <ThanksPage />,
             },
 
             {
                 path: 'admin',
                 element: (
                     <Suspense
-                    fallback={
-                        <div className="text-center p-5 text-xl text-slate-900">
-                            Loading..
-                        </div>
-                    }
+                        fallback={
+                            <div className="text-center p-5 text-xl text-slate-900">Loading..</div>
+                        }
                     >
-                        <AdminPage/>
+                        <AdminPage />
                     </Suspense>
-                )
-            }
-        ]
+                ),
+            },
+        ],
     },
-
 ]);
 
 export function Routes() {
     return (
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router}/>
+            <RouterProvider router={router} />
         </QueryClientProvider>
-    )
+    );
 }
