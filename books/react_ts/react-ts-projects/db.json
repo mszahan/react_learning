@@ -39,6 +39,11 @@
       "id": "f81a",
       "title": "The post from react query",
       "description": "tried to fix the issue with useMutation"
+    },
+    {
+      "id": "32fb",
+      "title": "post with react query and router combined",
+      "description": "Used react query and router to post and update the data automatically."
     }
   ]
 }
