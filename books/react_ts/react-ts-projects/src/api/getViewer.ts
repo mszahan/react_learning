@@ -1,3 +1,4 @@
+import { gql } from '@apollo/client';
 import { ViewerData } from './types';
 
 type GetViewerResponse = {
