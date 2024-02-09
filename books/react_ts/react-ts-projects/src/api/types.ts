@@ -13,9 +13,9 @@ export type RepoData = {
         id: string;
         name: string;
         description: string;
-        viewerHasSatrred: boolean;
+        viewerHasStarred: boolean;
         stargazers: {
-            tottalCount: number;
+            totalCount: number;
         };
     };
 };

@@ -1,7 +1,7 @@
 import { RepoData, SearchCriteria } from './types';
 
 export const GET_REPO = `
-    query GetRepo($org: String!, $repo: String!) {
+    query($org: String!, $repo: String!) {
         repository(owner: $org, name: $repo) {
             id
             name
