@@ -1,8 +1,11 @@
-import { useQuery } from '@tanstack/react-query';
-import { getViewer } from '../api/getViewer';
+// import { useQuery } from '@tanstack/react-query';
+import { useQuery } from '@apollo/client';
+import { GET_VIEWER_QUERY } from '../api/getViewer';
+// import { getViewer } from '../api/getViewer';
 
 export function GitHeader() {
-    const { isLoading, data } = useQuery({ queryKey: ['viewer'], queryFn: getViewer });
+    // const { isLoading, data } = useQuery({ queryKey: ['viewer'], queryFn: getViewer });
+    const { loading: isLoading, data } = useQuery(GET_VIEWER_QUERY);
 
     if (isLoading || data === undefined) {
         return <div className="text-center">Loading...</div>;

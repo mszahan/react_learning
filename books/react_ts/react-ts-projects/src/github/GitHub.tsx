@@ -8,7 +8,7 @@ const queryClient = new ApolloClient({
     uri: import.meta.env.VITE_GITHUB_URL!,
     cache: new InMemoryCache(),
     headers: {
-        Authorization: `bearer${import.meta.env.VITE_GITHUB_PAT}`,
+        Authorization: `bearer ${import.meta.env.VITE_GITHUB_PAT}`,
     },
 });
 
