@@ -12,6 +12,7 @@ import { PostPage } from './posts/PostPage';
 import ConflictPage from './pages/ConflictPage';
 import { getPosts } from './posts/getPosts';
 import GitHub from './github/GitHub';
+import ChecklistPage from './checklist/ChecklistPage';
 
 const AdminPage = lazy(() => import('./pages/AdminPage'));
 const queryClient = new QueryClient();
@@ -67,6 +68,11 @@ const router = createBrowserRouter([
             {
                 path: 'github',
                 element: <GitHub />,
+            },
+
+            {
+                path: 'check-list',
+                element: <ChecklistPage />,
             },
 
             {
