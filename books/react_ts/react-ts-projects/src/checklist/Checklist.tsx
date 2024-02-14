@@ -1,5 +1,5 @@
 import { ComponentPropsWithoutRef, ReactNode } from 'react';
-// import { IdValue } from './types';
+import { IdValue } from '.';
 import { useChecked } from './useChecked';
 
 type Props<Data> = {
@@ -8,6 +8,8 @@ type Props<Data> = {
     primary: keyof Data;
     secondary: keyof Data;
     renderItem?: (item: Data) => ReactNode;
+    checkedIds?: IdValue[];
+    oncheckedIdsChange?: (checkedIds: IdValue[]) => void;
 } & ComponentPropsWithoutRef<'ul'>;
 
 export function Checklist<Data>({
@@ -16,9 +18,14 @@ export function Checklist<Data>({
     primary,
     secondary,
     renderItem,
+    checkedIds,
+    oncheckedIdsChange,
     ...urlProps
 }: Props<Data>) {
-    const { checkedIds, handleCheckedChange } = useChecked();
+    const { resolvedCheckedIds, handleCheckedChange } = useChecked({
+        checkedIds,
+        oncheckedIdsChange,
+    });
     // const [checkedIds, setCheckedIds] = useState<IdValue[]>([]);
     // const handleCheckChange = (checkedId: IdValue) => () => {
     //     const isChecked = checkedIds.includes(checkedId);
@@ -52,7 +59,7 @@ export function Checklist<Data>({
                         <label className="flex item-center">
                             <input
                                 type="checkbox"
-                                checked={checkedIds.includes(idValue)}
+                                checked={resolvedCheckedIds.includes(idValue)}
                                 onChange={handleCheckedChange(idValue)}
                             />
                             <div className="ml-2">

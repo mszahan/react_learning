@@ -1,15 +1,31 @@
-import { useState } from 'react';
-import { IdValue } from './types';
+import { useState, useEffect } from 'react';
+import { IdValue } from '.';
 
-export function useChecked() {
-    const [checkedIds, setCheckedIds] = useState<IdValue[]>([]);
+type Params = {
+    checkedIds?: IdValue[];
+    oncheckedIdsChange?: (checkedIds: IdValue[]) => void;
+};
+
+export function useChecked({ checkedIds, oncheckedIdsChange }: Params) {
+    const [resolvedCheckedIds, setResolvedCheckedIds] = useState<IdValue[]>(checkedIds || []);
     const handleCheckedChange = (checkedId: IdValue) => () => {
-        const isChecked = checkedIds.includes(checkedId);
+        const isChecked = resolvedCheckedIds.includes(checkedId);
         const newCheckIds = isChecked
-            ? checkedIds.filter((itemCheckedid) => itemCheckedid !== checkedId)
-            : checkedIds.concat(checkedId);
-        setCheckedIds(newCheckIds);
+            ? resolvedCheckedIds.filter((itemCheckedid) => itemCheckedid !== checkedId)
+            : resolvedCheckedIds.concat(checkedId);
+        if (oncheckedIdsChange) {
+            oncheckedIdsChange(newCheckIds);
+        } else {
+            setResolvedCheckedIds(newCheckIds);
+        }
     };
 
-    return { handleCheckedChange, checkedIds };
+    useEffect(() => {
+        const isControlled = checkedIds !== undefined;
+        if (isControlled) {
+            setResolvedCheckedIds(checkedIds);
+        }
+    }, [checkedIds]);
+
+    return { handleCheckedChange, resolvedCheckedIds };
 }
