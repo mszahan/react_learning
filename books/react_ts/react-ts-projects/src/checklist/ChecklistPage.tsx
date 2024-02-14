@@ -11,6 +11,12 @@ function ChecklistPage() {
                     { id: 2, name: 'Jen', role: 'director' },
                     { id: 2, name: 'Jo', role: 'Employee' },
                 ]}
+                renderItem={(item) => (
+                    <li key={item.id} className="bg-white p-4 border-b-2">
+                        <div className="tex-xl text-slate-800 pb-1">{item.name}</div>
+                        <div className="text-slate-500">{item.role}</div>
+                    </li>
+                )}
                 id="id"
                 primary="name"
                 secondary="role"

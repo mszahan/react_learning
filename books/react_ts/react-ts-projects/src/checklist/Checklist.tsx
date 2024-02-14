@@ -1,16 +1,28 @@
-import { ComponentPropsWithoutRef } from 'react';
+import { ComponentPropsWithoutRef, ReactNode } from 'react';
 
 type Props<Data> = {
     data: Data[];
     id: keyof Data;
     primary: keyof Data;
     secondary: keyof Data;
+    renderItem?: (item: Data) => ReactNode;
 } & ComponentPropsWithoutRef<'ul'>;
 
-export function Checklist<Data>({ data, id, primary, secondary, ...urlProps }: Props<Data>) {
+export function Checklist<Data>({
+    data,
+    id,
+    primary,
+    secondary,
+    renderItem,
+    ...urlProps
+}: Props<Data>) {
     return (
         <ul className="bg-gray-300 rounded p-10" {...urlProps}>
             {data.map((item) => {
+                if (renderItem) {
+                    return renderItem(item);
+                }
+
                 const idValue = item[id] as unknown;
                 if (typeof idValue !== 'string' && typeof idValue !== 'number') {
                     return null;
@@ -20,6 +32,7 @@ export function Checklist<Data>({ data, id, primary, secondary, ...urlProps }: P
                 if (typeof primaryText !== 'string') {
                     return null;
                 }
+
                 const secondaryText = item[secondary] as unknown;
 
                 return (
