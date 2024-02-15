@@ -1,3 +1,4 @@
+import { test, expect } from 'vitest';
 import { assertValueCanBeRendered } from './assertValueCanBeRendered';
 
 test('should raise exception when to a string or number', () => {
