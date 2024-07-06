@@ -1,6 +1,6 @@
 const SplitScreen = ({ left: Left, right: Right }) => {
   return (
-    <div className="flex flex-row gap-3">
+    <div className="flex gap-3">
       <div>
         <Left />
       </div>

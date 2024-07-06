@@ -1,4 +1,4 @@
-import SplitScreen from "../SplitScreen";
+import SplitScreen from "./SplitScreen";
 
 const LeftComponent = () => {
   return <h1>Left sidebar</h1>;
