@@ -1,12 +1,9 @@
-const SplitScreen = ({ left: Left, right: Right }) => {
+const SplitScreen = ({ children }) => {
+  const [left, right] = children;
   return (
     <div className="flex gap-3">
-      <div>
-        <Left />
-      </div>
-      <div>
-        <Right />
-      </div>
+      <div>{left}</div>
+      <div>{right}</div>
     </div>
   );
 };
