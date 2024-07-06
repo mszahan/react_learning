@@ -3,11 +3,11 @@ import Layout from "./components/layout/Layout";
 
 function App() {
   return (
-    <>
-      <h1>learn react desing pattern</h1>
+    <div className="m-5">
+      <h1 className="mb-5">learn react desing pattern</h1>
       <hr />
       <Layout />
-    </>
+    </div>
   );
 }
 
