@@ -1,8 +1,10 @@
 import SplitScreen from "./SplitScreen";
 import { people, products } from "./data";
 import { RegularList } from "./RegularList";
+import { NumberedList } from "./NumberedList";
 import { SmallPersonListItem } from "./people/SmallPersonListItem";
 import { LargePersonListItem } from "./people/LargePersonListItem";
+import { LargeProductListItem } from "./product/LargeProductListItem";
 
 const LeftComponent = ({ name }) => {
   return <h1>{name}</h1>;
@@ -32,6 +34,13 @@ const Layout = () => {
         items={people}
         resourceName="person"
         itemComponent={LargePersonListItem}
+      />
+
+      <h4 className="text-xl font-semibold mt-5">The Large person list Item</h4>
+      <NumberedList
+        items={products}
+        resourceName="products"
+        itemComponent={LargeProductListItem}
       />
     </div>
   );
