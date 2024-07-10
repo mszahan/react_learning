@@ -1,4 +1,5 @@
 import SplitScreen from "./SplitScreen";
+import { Modal } from "./Modal";
 import { people, products } from "./data";
 import { RegularList } from "./RegularList";
 import { NumberedList } from "./NumberedList";
@@ -42,6 +43,13 @@ const Layout = () => {
         resourceName="products"
         itemComponent={LargeProductListItem}
       />
+
+      <h4 className="text-xl font-semibold mt-5">
+        Large product list item within modal
+      </h4>
+      <Modal>
+        <LargeProductListItem products={products[0]} />
+      </Modal>
     </div>
   );
 };
