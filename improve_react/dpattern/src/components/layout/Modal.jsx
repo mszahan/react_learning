@@ -5,7 +5,12 @@ export const Modal = ({ children }) => {
 
   return (
     <>
-      <button onClick={() => setShouldShow(true)}>show</button>
+      <button
+        onClick={() => setShouldShow(true)}
+        className="bg-cyan-500 shadow-lg shadow-cyan-500/50 p-2 text-white rounded-xl"
+      >
+        show modal
+      </button>
       {shouldShow && (
         // to make hide the modal when clicked on the background
         <div

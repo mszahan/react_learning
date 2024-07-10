@@ -17,36 +17,42 @@ const RightComponent = ({ message }) => {
 const Layout = () => {
   return (
     <div className="lay">
-      <h1 className="text-2xl">The split screen components</h1>
+      <h1 className="text-2xl pb-2 text-cyan-700">The layout components</h1>
+      <hr />
+      <h1 className="text-xl font-semibold my-3">
+        The split screen components
+      </h1>
       <SplitScreen>
         <LeftComponent name={"Alex is a girl"} />
         <RightComponent message={"Hello there"} />
       </SplitScreen>
 
-      <h3 className="text-2xl mt-5">the List component</h3>
-      <h4 className="text-xl font-semibold mt-5">The small person list Item</h4>
+      <h3 className="text-xl font-semibold my-3">The list component</h3>
+      <h4 className="font-semibold mt-5">The small person list item</h4>
       <RegularList
         items={people}
         resourceName="person"
         itemComponent={SmallPersonListItem}
       />
-      <h4 className="text-xl font-semibold mt-5">The Large person list Item</h4>
-      <RegularList
-        items={people}
-        resourceName="person"
-        itemComponent={LargePersonListItem}
-      />
+      <h4 className="font-semibold mt-5">The Large person list item</h4>
+      <div className="flex gap-5">
+        <RegularList
+          items={people}
+          resourceName="person"
+          itemComponent={LargePersonListItem}
+        />
+      </div>
 
-      <h4 className="text-xl font-semibold mt-5">The Large person list Item</h4>
-      <NumberedList
-        items={products}
-        resourceName="products"
-        itemComponent={LargeProductListItem}
-      />
+      <h4 className="font-semibold mt-5">The large product list item</h4>
+      <div className="flex gap-5">
+        <NumberedList
+          items={products}
+          resourceName="products"
+          itemComponent={LargeProductListItem}
+        />
+      </div>
 
-      <h4 className="text-xl font-semibold mt-5">
-        Large product list item within modal
-      </h4>
+      <h4 className="text-xl font-semibold my-3">The modal component</h4>
       <Modal>
         <LargeProductListItem products={products[0]} />
       </Modal>
