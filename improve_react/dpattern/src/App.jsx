@@ -1,12 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import NavBar from "./components/NavBar";
 import Layout from "./components/layout/Layout";
 
 function App() {
   return (
     <div className="m-5">
-      <h1 className="mb-5 text-3xl">learn react desing pattern</h1>
-      <hr />
-      <Layout />
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<Layout />} />
+      </Routes>
     </div>
   );
 }
