@@ -1,6 +1,14 @@
-const express = require("express");
+import express from "express";
+// import cors from "cors";
 
 const app = express();
+
+// Use the CORS middleware and configure it to allow requests from the frontend
+// app.use(
+//   cors({
+//     origin: "http://localhost:5173", // Replace with your frontend's origin
+//   })
+// );
 
 app.use(express.json());
 
@@ -59,16 +67,13 @@ app.get("/current-user", (req, res) => {
 
 app.get("/users/:id", (req, res) => {
   const { id } = req.params;
-
   res.json(users.find((user) => user.id === id));
 });
 
 app.post("/users/:id", (req, res) => {
   const { id } = req.params;
   const { user: updatedUser } = req.body;
-
   users = users.map((user) => (user.id === id ? updatedUser : user));
-
   res.json(users.find((user) => user.id === id));
 });
 
@@ -78,7 +83,6 @@ app.get("/users", (req, res) => {
 
 app.get("/products/:id", (req, res) => {
   const { id } = req.params;
-
   res.json(products.find((product) => product.id === id));
 });
 
