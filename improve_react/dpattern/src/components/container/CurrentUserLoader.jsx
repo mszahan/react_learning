@@ -5,19 +5,13 @@ export const CurrentUserLoader = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get("/current-user");
-        setUser(response.data);
-      } catch (error) {
-        console.error("Error fetching user data:", error);
-      }
-    };
-
-    fetchUser();
+    (async () => {
+      const response = await axios.get("current-user");
+      setUser(response.data);
+    })();
   }, []);
 
-  return user ? (
+  return (
     <div className="current">
       {React.Children.map(children, (child) => {
         if (React.isValidElement(child)) {
@@ -27,7 +21,5 @@ export const CurrentUserLoader = ({ children }) => {
         return child;
       })}
     </div>
-  ) : (
-    <p>Loading..</p>
   );
 };
