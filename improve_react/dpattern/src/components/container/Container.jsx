@@ -1,4 +1,5 @@
 import { CurrentUserLoader } from "./CurrentUserLoader";
+import { UserLoader } from "./UserLoader";
 import { UserInfo } from "./UserInfo";
 
 const Container = () => {
@@ -10,6 +11,9 @@ const Container = () => {
       <CurrentUserLoader>
         <UserInfo />
       </CurrentUserLoader>
+      <UserLoader userId={"1"}>
+        <UserInfo />
+      </UserLoader>
     </div>
   );
 };
