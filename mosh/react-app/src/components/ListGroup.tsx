@@ -1,17 +1,12 @@
 // import type { MouseEvent } from "react";
 import { useState } from "react";
 
-function ListGroup() {
-  const items = [
-    "New York",
-    "San Francisco",
-    "Los Angeles",
-    "Chicago",
-    "Houston",
-    "Phoenix",
-    "Philadelphia",
-  ];
+interface Props {
+  items: string[];
+  heading: string;
+}
 
+function ListGroup({ items, heading }: Props) {
   // const handleClick = (event: MouseEvent) => {
   //   console.log(event);
   // };
@@ -20,7 +15,7 @@ function ListGroup() {
 
   return (
     <>
-      <h1>List group</h1>
+      <h1>{heading}</h1>
       <ul className="list-group">
         {items.map((item, index) => (
           <li
