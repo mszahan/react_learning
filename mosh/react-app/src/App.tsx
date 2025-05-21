@@ -1,8 +1,11 @@
+import { useState } from "react";
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
 import Like from "./components/Like";
-import { useState } from "react";
+import RemoveButton from "./components/states/RemoveButton";
+import AddButton from "./components/states/AddButton";
+import EditButton from "./components/states/EditButton";
 
 function App() {
   const items = ["New York", "San Francisco", "Tokyo", "London"];
@@ -26,6 +29,9 @@ function App() {
       <div>
         <Like onClick={() => console.log("clicked")} />
       </div>
+      <RemoveButton />
+      <AddButton />
+      <EditButton />
     </div>
   );
 }
