@@ -1,6 +1,7 @@
 import ListGroup from "./components/ListGroup";
 import Alert from "./components/Alert";
 import Button from "./components/Button";
+import Like from "./components/Like";
 import { useState } from "react";
 
 function App() {
@@ -22,6 +23,9 @@ function App() {
         <Alert onClose={() => setViewAlert(false)}>Button clicked</Alert>
       )}
       <Button onClick={() => setViewAlert(true)}>Open Alert</Button>
+      <div>
+        <Like onClick={() => console.log("clicked")} />
+      </div>
     </div>
   );
 }
