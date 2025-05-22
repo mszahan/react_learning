@@ -9,6 +9,7 @@ import EditButton from "./components/states/EditButton";
 import TestState from "./components/states/TestState";
 import ObjUpdate from "./components/states/ObjUpdate";
 import ListObj from "./components/states/ListObj";
+import ExpandibleText from "./components/ExpandibleText";
 
 function App() {
   const items = ["New York", "San Francisco", "Tokyo", "London"];
@@ -38,6 +39,14 @@ function App() {
       <TestState />
       <ObjUpdate />
       <ListObj />
+      <ExpandibleText>
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+        Exercitationem, esse minima earum recusandae quae veniam atque sunt
+        nostrum accusamus nisi maxime minus perspiciatis voluptatem ex tenetur
+        debitis, neque nihil. Laboriosam incidunt nisi beatae repellendus eaque
+        omnis nobis ex nihil, accusamus similique ducimus sunt fugit eum dolorum
+        voluptates animi, corporis vitae?
+      </ExpandibleText>
     </div>
   );
 }
