@@ -10,6 +10,7 @@ import TestState from "./components/states/TestState";
 import ObjUpdate from "./components/states/ObjUpdate";
 import ListObj from "./components/states/ListObj";
 import ExpandibleText from "./components/ExpandibleText";
+import AddDuster from "./components/states/AddDuster";
 
 function App() {
   const items = ["New York", "San Francisco", "Tokyo", "London"];
@@ -47,6 +48,7 @@ function App() {
         omnis nobis ex nihil, accusamus similique ducimus sunt fugit eum dolorum
         voluptates animi, corporis vitae?
       </ExpandibleText>
+      <AddDuster />
     </div>
   );
 }
