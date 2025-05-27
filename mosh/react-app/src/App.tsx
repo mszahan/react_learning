@@ -12,6 +12,7 @@ import ListObj from "./components/states/ListObj";
 import ExpandibleText from "./components/ExpandibleText";
 import AddDuster from "./components/states/AddDuster";
 import Form from "./components/Form";
+import ControlledForm from "./components/ControlledFrom";
 
 function App() {
   const items = ["New York", "San Francisco", "Tokyo", "London"];
@@ -51,6 +52,7 @@ function App() {
       </ExpandibleText>
       <AddDuster />
       <Form />
+      <ControlledForm />
     </div>
   );
 }
