@@ -1,7 +1,16 @@
 import { useForm, type FieldValues } from "react-hook-form";
 
+interface FormData {
+  name: string;
+  age: number;
+}
+
 const HookForm = () => {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
   const onSubmit = (data: FieldValues) => console.log(data);
 
@@ -13,11 +22,17 @@ const HookForm = () => {
           Name
         </label>
         <input
-          {...register("name")}
+          {...register("name", { required: true, minLength: 3 })}
           type="text"
           className="form-control"
           id="name"
         />
+        {errors.name?.type === "required" && (
+          <p className="text-danger">Name is required</p>
+        )}
+        {errors.name?.type === "minLength" && (
+          <p className="text-danger">The name must be 3 character long</p>
+        )}
       </div>
       <div className="mb-3">
         <label htmlFor="age" className="form-label">
