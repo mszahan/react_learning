@@ -1,6 +1,7 @@
 import Form from "./Form";
 import ConrolledForm from "./ControlledFrom";
 import HookForm from "./HookForm";
+import ZodForm from "./ZodFrom";
 
 const Forms = () => {
   return (
@@ -11,6 +12,8 @@ const Forms = () => {
       <ConrolledForm />
       <h3>Form with react-hook-form</h3>
       <HookForm />
+      <h3>Form with zod validation</h3>
+      <ZodForm />
     </div>
   );
 };
