@@ -6,6 +6,8 @@ import Like from "./components/Like";
 import ExpandibleText from "./components/ExpandibleText";
 import States from "./components/states/States";
 import Forms from "./components/forms/Forms";
+import ExpenseTracker from "./components/expense/ExpenseTracker";
+
 function App() {
   const items = ["New York", "San Francisco", "Tokyo", "London"];
   const handleSelectItem = (item: string) => console.log(item);
@@ -38,6 +40,7 @@ function App() {
         voluptates animi, corporis vitae?
       </ExpandibleText>
       <Forms />
+      <ExpenseTracker />
     </div>
   );
 }
