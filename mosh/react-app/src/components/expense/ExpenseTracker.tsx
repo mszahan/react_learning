@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseList from "./ExpenseList";
+import ExpenseFilter from "./ExpenseFilter";
 
 const ExpenseTracker = () => {
   const [expenseList, setExpenseList] = useState([
@@ -9,11 +10,19 @@ const ExpenseTracker = () => {
     { id: 3, description: "Pen", amount: 15, category: "Education" },
     { id: 4, description: "Pencil", amount: 25, category: "Education" },
   ]);
+
+  const [expenseCategory, setExpenseCategory] = useState("");
+  const visibleExpenseList = expenseCategory
+    ? expenseList.filter((item) => item.category === expenseCategory)
+    : expenseList;
   return (
     <div className="container m-3">
       <ExpenseForm />
+      <ExpenseFilter
+        onSelectCategory={(category) => setExpenseCategory(category)}
+      />
       <ExpenseList
-        expenseList={expenseList}
+        expenseList={visibleExpenseList}
         onDelete={(id) =>
           setExpenseList(expenseList.filter((item) => item.id !== id))
         }

@@ -11,6 +11,9 @@ interface Props {
 }
 
 const ExpenseList = ({ expenseList, onDelete }: Props) => {
+  if (expenseList.length === 0) {
+    return null;
+  }
   return (
     <div className="table">
       <h3 className="mt-5">All the expense</h3>
