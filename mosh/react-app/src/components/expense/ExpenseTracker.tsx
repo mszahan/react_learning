@@ -17,7 +17,14 @@ const ExpenseTracker = () => {
     : expenseList;
   return (
     <div className="container m-3">
-      <ExpenseForm />
+      <ExpenseForm
+        onSubmit={(newExpense) =>
+          setExpenseList([
+            ...expenseList,
+            { ...newExpense, id: expenseList.length + 1 },
+          ])
+        }
+      />
       <ExpenseFilter
         onSelectCategory={(category) => setExpenseCategory(category)}
       />
