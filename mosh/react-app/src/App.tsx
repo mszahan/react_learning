@@ -7,13 +7,14 @@ import ExpandibleText from "./components/ExpandibleText";
 import States from "./components/states/States";
 import Forms from "./components/forms/Forms";
 import ExpenseTracker from "./components/expense/ExpenseTracker";
+import Backend from "./components/connectingBackend/Backend";
 
 function App() {
   const items = ["New York", "San Francisco", "Tokyo", "London"];
   const handleSelectItem = (item: string) => console.log(item);
   const [viewAlert, setViewAlert] = useState(false);
   return (
-    <div className="container">
+    <div className="container mb-5">
       <ListGroup
         items={items}
         heading="List group"
@@ -41,6 +42,7 @@ function App() {
       </ExpandibleText>
       <Forms />
       <ExpenseTracker />
+      <Backend />
     </div>
   );
 }
