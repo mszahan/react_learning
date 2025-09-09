@@ -2,6 +2,7 @@ import { useState } from "react";
 import EffectBasic from "./EffectBasic";
 import EffectDependency from "./EffectDependency";
 import FetchingData from "./FetchingData";
+import AsyncFetching from "./AsyncFetching";
 
 const Backend = () => {
   const [category, setCategory] = useState("");
@@ -20,6 +21,7 @@ const Backend = () => {
         </select>
         <EffectDependency category={category} />
         <FetchingData />
+        <AsyncFetching />
       </div>
     </div>
   );
