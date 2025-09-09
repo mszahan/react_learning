@@ -1,6 +1,7 @@
 import { useState } from "react";
 import EffectBasic from "./EffectBasic";
 import EffectDependency from "./EffectDependency";
+import FetchingData from "./FetchingData";
 
 const Backend = () => {
   const [category, setCategory] = useState("");
@@ -18,6 +19,7 @@ const Backend = () => {
           <option value="household">Household</option>
         </select>
         <EffectDependency category={category} />
+        <FetchingData />
       </div>
     </div>
   );
