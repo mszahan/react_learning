@@ -9,15 +9,26 @@ interface User {
 const FetchingData = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     axios
       .get<User[]>("https://jsonplaceholder.typicode.com/users")
-      .then((res) => setUsers(res.data))
-      .catch((err) => setError(err.message));
+      .then((res) => {
+        setUsers(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
+    //you could just do this but strict mode doesn't support here
+    // .finally(()=> setLoading(false))
   }, []);
   return (
     <div className="json">
       <p className="mt-5">fetching data from json placeholder</p>
+      {loading && <div className="spinner-border"></div>}
       {error && <p className="text-danger">{error}</p>}
 
       <ul>
