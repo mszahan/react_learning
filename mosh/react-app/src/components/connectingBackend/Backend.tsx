@@ -3,6 +3,7 @@ import EffectBasic from "./EffectBasic";
 import EffectDependency from "./EffectDependency";
 import FetchingData from "./FetchingData";
 import AsyncFetching from "./AsyncFetching";
+import CancelFetch from "./CancelFetch";
 
 const Backend = () => {
   const [category, setCategory] = useState("");
@@ -22,6 +23,7 @@ const Backend = () => {
         <EffectDependency category={category} />
         <FetchingData />
         <AsyncFetching />
+        <CancelFetch />
       </div>
     </div>
   );
