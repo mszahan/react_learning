@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios, { CanceledError } from "axios";
+import apiClient, { CanceledError } from "../../services/api-client";
 
 interface User {
   id: number;
@@ -12,8 +12,8 @@ const CancelFetch = () => {
   useEffect(() => {
     // when user navigating away from this page it will abort the fetch
     const controller = new AbortController();
-    axios
-      .get<User[]>("https://jsonplaceholder.typicode.com/users", {
+    apiClient
+      .get<User[]>("/users", {
         signal: controller.signal,
       })
       .then((res) => setUsers(res.data))
