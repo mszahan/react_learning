@@ -1,10 +1,5 @@
 import { useState, useEffect } from "react";
-import apiClient from "../../services/api-client";
-
-interface User {
-  id: number;
-  name: string;
-}
+import userService, { type User } from "../../services/user-service";
 
 const FetchingData = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -12,8 +7,8 @@ const FetchingData = () => {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
     setLoading(true);
-    apiClient
-      .get<User[]>("/users")
+    const { request, cancel } = userService.getAllUsers();
+    request
       .then((res) => {
         setUsers(res.data);
         setLoading(false);
@@ -22,6 +17,7 @@ const FetchingData = () => {
         setError(err.message);
         setLoading(false);
       });
+    return () => cancel();
     //you could just do this but strict mode doesn't support here
     // .finally(()=> setLoading(false))
   }, []);
@@ -30,8 +26,8 @@ const FetchingData = () => {
     const newUser = { id: 0, name: "Zahan" };
     const originalUsers = [...users];
     setUsers([newUser, ...users]);
-    apiClient
-      .post("/users/", newUser)
+    userService
+      .createUser(newUser)
       .then((res) => setUsers([res.data, ...users]))
       .catch((err) => {
         setError(err.message);
@@ -43,7 +39,7 @@ const FetchingData = () => {
     const originalUsers = [...users];
     const updatedUser = { ...user, name: user.name + "!" };
     setUsers(users.map((u) => (u.id === user.id ? updatedUser : u)));
-    apiClient.patch("/users/" + user.id, updatedUser).catch((err) => {
+    userService.updateUser(updatedUser).catch((err) => {
       setError(err.message);
       setUsers(originalUsers);
     });
@@ -53,7 +49,7 @@ const FetchingData = () => {
     const originalUsers = [...users];
     setUsers(users.filter((u) => u.id !== user.id));
 
-    apiClient.delete("/users/" + user.id).catch((err) => {
+    userService.deleteUser(user.id).catch((err) => {
       setError(err.message);
       setUsers(originalUsers);
     });
