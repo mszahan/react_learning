@@ -1,27 +1,8 @@
-import { useState, useEffect } from "react";
 import userService, { type User } from "../../services/user-service";
+import useUsers from "../../hooks/useUsers";
 
 const FetchingData = () => {
-  const [users, setUsers] = useState<User[]>([]);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    const { request, cancel } = userService.getAll<User>();
-    request
-      .then((res) => {
-        setUsers(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setError(err.message);
-        setLoading(false);
-      });
-    return () => cancel();
-    //you could just do this but strict mode doesn't support here
-    // .finally(()=> setLoading(false))
-  }, []);
-
+  const { users, error, loading, setUsers, setError } = useUsers();
   const addUser = () => {
     const newUser = { id: 0, name: "Zahan" };
     const originalUsers = [...users];
