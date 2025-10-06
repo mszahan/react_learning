@@ -8,10 +8,10 @@ export default function Navbar() {
       </div>
       <div className="nav-section">
         <ul className="flex flex-row gap-5">
-          <li className="hover:underline"><Link href='#'>Home</Link></li>
-          <li className="hover:underline"><Link href='#'>Products</Link></li>
-          <li className="hover:underline"><Link href='#'>About</Link></li>
-          <li className="hover:underline"><Link href='#'>Contacts</Link></li>
+          <li className="hover:border-b-1 border-white"><Link href='/'>Home</Link></li>
+          <li className="hover:border-b-1 border-white"><Link href='/blog'>Blog</Link></li>
+          <li className="hover:border-b-1 border-white"><Link href='#'>About</Link></li>
+          <li className="hover:border-b-1 border-white"><Link href='#'>Contacts</Link></li>
         </ul>
       </div>
     </div>
