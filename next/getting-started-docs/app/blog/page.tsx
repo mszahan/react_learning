@@ -5,7 +5,7 @@ export default function Page() {
             <ul>
                 <li>Todo</li>
                 <li>Todo2</li>
-                <li>Todo3</li>
+                <li>Todo</li>
             </ul>
         </div>
     )
